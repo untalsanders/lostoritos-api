@@ -25,6 +25,9 @@ importers:
       rxjs:
         specifier: 7.8.2
         version: 7.8.2
+      uuid:
+        specifier: 11.1.0
+        version: 11.1.0
     devDependencies:
       '@commitlint/cli':
         specifier: 19.8.1
@@ -38,6 +41,9 @@ importers:
       '@eslint/js':
         specifier: 9.32.0
         version: 9.32.0
+      '@faker-js/faker':
+        specifier: 9.9.0
+        version: 9.9.0
       '@nestjs/cli':
         specifier: 11.0.10
         version: 11.0.10(@types/node@24.2.0)
@@ -644,6 +650,13 @@ packages:
         integrity: sha512-Ul5l+lHEcw3L5+k8POx6r74mxEYKG5kOb6Xpy2gCRW6zweT6TEhAf8vhxGgjhqrd/VO/Dirhsb+1hNpD1ue9hw==,
       }
     engines: { node: ^18.18.0 || ^20.9.0 || >=21.1.0 }
+
+  '@faker-js/faker@9.9.0':
+    resolution:
+      {
+        integrity: sha512-OEl393iCOoo/z8bMezRlJu+GlRGlsKbUAN7jKB6LhnKoqKve5DXRpalbItIIcwnCjs1k/FOPjFzcA6Qn+H+YbA==,
+      }
+    engines: { node: '>=18.0.0', npm: '>=9.0.0' }
 
   '@humanfs/core@0.19.1':
     resolution:
@@ -5509,6 +5522,13 @@ packages:
         integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==,
       }
 
+  uuid@11.1.0:
+    resolution:
+      {
+        integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==,
+      }
+    hasBin: true
+
   v8-compile-cache-lib@3.0.1:
     resolution:
       {
@@ -6111,6 +6131,8 @@ snapshots:
     dependencies:
       '@eslint/core': 0.15.1
       levn: 0.4.1
+
+  '@faker-js/faker@9.9.0': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -9273,6 +9295,8 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
+
+  uuid@11.1.0: {}
 
   v8-compile-cache-lib@3.0.1: {}
 

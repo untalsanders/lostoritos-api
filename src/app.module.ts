@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { PlayersModule } from './players/players.module'
+import { PlayerModule } from './modules/player/player.module'
 import { ConfigModule } from '@nestjs/config'
 
 @Module({
@@ -9,7 +9,7 @@ import { ConfigModule } from '@nestjs/config'
       cache: true,
       expandVariables: true,
     }),
-    PlayersModule,
+    PlayerModule,
   ],
 })
 export class AppModule {}
