@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { PlayerModule } from './modules/player/player.module'
 import { ConfigModule } from '@nestjs/config'
+import { AppController } from './app.controller'
 
 @Module({
   imports: [
@@ -11,5 +12,6 @@ import { ConfigModule } from '@nestjs/config'
     }),
     PlayerModule,
   ],
+  controllers: [AppController]
 })
 export class AppModule {}
