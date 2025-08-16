@@ -5,7 +5,7 @@ export class PlayerPhone {
     const phoneRegex = /^\+?[0-9]{10,}$/
     if (!phoneRegex.test(value)) {
       throw new Error(
-        'Invalid phone number format. Must be at least 15 digits.',
+        'Invalid phone number format. Must be at least 10 digits.',
       )
     }
     this.value = value

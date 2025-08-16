@@ -1,19 +1,71 @@
-import { faker } from '@faker-js/faker'
+import { faker } from '@faker-js/faker/locale/es_MX'
+import * as fs from 'fs'
+import * as path from 'path'
 import { Player } from '../entities/player'
 import { PlayerName } from '../value-objects/player-name.vo'
 import { PlayerPhone } from '../value-objects/player-phone.vo'
 
-export const playerList = (): Promise<Player[]> => {
+const fileHasRecords = (file: string): boolean => {
+  if (!fs.existsSync(file) || fs.statSync(file).size === 0) {
+    console.log('db.json is empty or does not exist. Writing mock data...')
+    return true
+  }
+  return false
+}
+
+export const writeMockPlayerList = async (): Promise<void> => {
+  const dbPath = path.resolve(process.cwd(), './.tmp/db.json')
+
+  if (!fileHasRecords(dbPath)) return
+
   const players: Player[] = []
   for (let i = 1; i <= 20; i++) {
-    const player = {
-      id: faker.string.uuid(),
-      name: new PlayerName(faker.person.firstName(), faker.person.lastName()),
-      phone: new PlayerPhone(faker.phone.number({ style: 'international' })),
-    }
+    const player = new Player(
+      new PlayerName(faker.person.firstName(), faker.person.lastName()),
+      new PlayerPhone(faker.phone.number({ style: 'international' })),
+      faker.string.uuid(),
+    )
     players.push(player)
   }
-  return new Promise(resolve => {
-    resolve(players)
+
+  const playersPlain = players.map(player => ({
+    id: player.id,
+    name: {
+      first: player.name.first,
+      last: player.name.last,
+    },
+    phone: player.phone,
+  }))
+
+  if (!fs.existsSync(path.dirname(dbPath))) {
+    fs.mkdirSync(path.dirname(dbPath), { recursive: true })
+  }
+
+  return new Promise((resolve, reject) => {
+    fs.writeFile(dbPath, JSON.stringify(playersPlain, null, 2), err => {
+      if (err) {
+        return reject(err)
+      }
+      resolve()
+    })
+  })
+}
+
+export const readMockPlayerList = (): Promise<Player[]> => {
+  const dbPath = path.resolve(process.cwd(), './.tmp/db.json')
+
+  return new Promise((resolve, reject) => {
+    fs.readFile(dbPath, 'utf8', (err, data) => {
+      if (err) {
+        return reject(err)
+      }
+      const playersData = JSON.parse(data)
+      const players: Player[] = playersData.map((p: any) => ({
+        id: p.id,
+        name: new PlayerName(p.name.first, p.name.last),
+        phone: new PlayerPhone(p.phone.value),
+      }))
+      resolve(players)
+    })
   })
 }

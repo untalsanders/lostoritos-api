@@ -1,6 +1,6 @@
 export class PlayerName {
-  private readonly first: string
-  private readonly last: string
+  private readonly _first: string
+  private readonly _last: string
 
   constructor(first: string, last: string) {
     if (!first || first.trim().length < 3) {
@@ -11,19 +11,19 @@ export class PlayerName {
       throw new Error('Player lastname must have at least 3 characters.')
     }
 
-    this.first = first
-    this.last = last
+    this._first = first
+    this._last = last
   }
 
-  get firstname(): string {
-    return this.first
+  get first(): string {
+    return this._first
   }
 
-  get lastname(): string {
-    return this.last
+  get last(): string {
+    return this._last
   }
 
   equals(other: PlayerName): boolean {
-    return this.first === other.first && this.last === other.last
+    return this._first === other._first && this._last === other._last
   }
 }
