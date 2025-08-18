@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import applicationConfig from './config/application.config'
+import databaseConfig from './config/database.config'
+import { DatabaseModule } from './modules/database/database.module'
 import { PlayerModule } from './modules/player/player.module'
 
 @Module({
@@ -9,8 +11,9 @@ import { PlayerModule } from './modules/player/player.module'
       isGlobal: true,
       cache: true,
       expandVariables: true,
-      load: [applicationConfig],
+      load: [applicationConfig, databaseConfig],
     }),
+    DatabaseModule,
     PlayerModule,
   ],
 })
