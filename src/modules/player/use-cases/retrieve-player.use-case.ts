@@ -1,4 +1,4 @@
-import { Player } from "../entities/player";
+import { Player } from '../models/player'
 
 export interface RetrievePlayerUseCase {
   retrievePlayers(): Promise<Player[]>

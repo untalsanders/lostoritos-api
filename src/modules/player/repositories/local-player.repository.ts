@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common'
-import { Player } from '../entities/player'
+import { Player } from '../models/player'
 import { readMockPlayerList } from '../utils/player.mock'
 import { PlayerRepository } from './player.repository'
 
 @Injectable()
 export class LocalPlayerRepository implements PlayerRepository {
-
   private playerList: Player[]
 
   async create(player: Player): Promise<Player> {
@@ -21,7 +20,7 @@ export class LocalPlayerRepository implements PlayerRepository {
 
   async findById(id: string): Promise<Player> {
     const playerList = await LocalPlayerRepository.getPlayerList()
-    const player = playerList.find(player => player.id == id)
+    const player = playerList.find(player => player.getId() == id)
     if (!player) {
       throw new Error(`Player with ID "${id}" not found.`)
     }

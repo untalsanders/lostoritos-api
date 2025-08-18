@@ -1,4 +1,4 @@
-import { Player } from '../entities/player'
+import { Player } from '../models/player'
 
 /**
  * Interface for a player repository.

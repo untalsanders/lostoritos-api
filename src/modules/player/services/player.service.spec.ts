@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { Player } from '../entities/player'
+import { Player } from '../models/player'
 import { PlayerName } from '../value-objects/player-name.vo'
 import { PlayerPhone } from '../value-objects/player-phone.vo'
 import { PlayerService } from './player.service'

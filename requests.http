@@ -6,13 +6,13 @@
 
 ### PlayerController [GET /players]
 # Get all players retrieval from data storage
-GET {{baseUrl}}/players
+GET {{baseUrl}}/api/players
 Content-Type: {{contentType}}
 
 
 ### Get a player by id
 # @prompt id
-GET {{baseUrl}}/players/{{id}}
+GET {{baseUrl}}/api/players/{{id}}
 Content-Type: {{contentType}}
 
 

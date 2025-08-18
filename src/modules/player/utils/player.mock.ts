@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/es_MX'
 import * as fs from 'fs'
 import * as path from 'path'
-import { Player } from '../entities/player'
+import { Player } from '../models/player'
 import { PlayerName } from '../value-objects/player-name.vo'
 import { PlayerPhone } from '../value-objects/player-phone.vo'
 
@@ -21,20 +21,20 @@ export const writeMockPlayerList = async (): Promise<void> => {
   const players: Player[] = []
   for (let i = 1; i <= 20; i++) {
     const player = new Player(
+      faker.string.uuid(),
       new PlayerName(faker.person.firstName(), faker.person.lastName()),
       new PlayerPhone(faker.phone.number({ style: 'international' })),
-      faker.string.uuid(),
     )
     players.push(player)
   }
 
   const playersPlain = players.map(player => ({
-    id: player.id,
+    id: player.getId(),
     name: {
-      first: player.name.first,
-      last: player.name.last,
+      first: player.getName().getFirst(),
+      last: player.getName().getLast(),
     },
-    phone: player.phone,
+    phone: player.getPhone(),
   }))
 
   if (!fs.existsSync(path.dirname(dbPath))) {

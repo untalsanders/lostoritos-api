@@ -11,7 +11,7 @@ export class PlayerPhone {
     this.value = value
   }
 
-  get phone(): string {
+  getPhone(): string {
     return this.value
   }
 
