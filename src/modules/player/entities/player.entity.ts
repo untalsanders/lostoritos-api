@@ -30,4 +30,11 @@ export class PlayerEntity {
 
   @Column({ name: 'is_active', default: true })
   isActive: boolean
+
+  constructor(id: string, firstName: string, lastName: string, phoneNumber: string) {
+    this.id = id
+    this.firstName = firstName
+    this.lastName = lastName
+    this.phoneNumber = phoneNumber
+  }
 }

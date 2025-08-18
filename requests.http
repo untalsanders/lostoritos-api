@@ -17,11 +17,11 @@ Content-Type: {{contentType}}
 
 
 ### Create player
-POST {{baseUrl}}/players
+POST {{baseUrl}}/api/players
 Content-Type: {{contentType}}
 
 {
-  "firstname": "Sanders Smith",
-  "lastname": "Gutiérrez Mena",
-  "phoneNumber": "1165690846"
+  "firstname": "John",
+  "lastname": "Doe",
+  "phoneNumber": "+1123456789"
 }

@@ -24,24 +24,38 @@ export class PlayerService
   ) {}
 
   async createPlayer(player: Player): Promise<Player> {
-    // return await this.playerRepository.create(player)
-    throw new Error()
+    const playerSaved = await this.playerRepository.save(
+      new PlayerEntity(
+        player.getId(),
+        player.getName().getFirst(),
+        player.getName().getLast(),
+        player.getPhone().getPhone(),
+      ),
+    )
+    if (!playerSaved) {
+      throw new Error('Player has not been saved')
+    }
+    return player
   }
 
   async retrievePlayers(): Promise<Player[]> {
     return (await this.playerRepository.find()).map(p => {
-      const playerName = new PlayerName(p.firstName, p.lastName)
-      const playerPhone = new PlayerPhone(p.phoneNumber)
-      return new Player(p.id, playerName, playerPhone)
+      const { id, firstName, lastName, phoneNumber } = p
+      const playerName = new PlayerName(firstName, lastName)
+      const playerPhone = new PlayerPhone(phoneNumber)
+      return new Player(id, playerName, playerPhone)
     })
   }
 
   async retrievPlayerById(id: string): Promise<Player> {
     const playerFound = await this.playerRepository.findOneBy({ id })
+
     if (!playerFound) {
       throw new Error(`Player with ID ${id} not found.`)
     }
+
     const { id: playerId, firstName, lastName, phoneNumber } = playerFound
+
     const playerName = new PlayerName(firstName, lastName)
     const playerPhone = new PlayerPhone(phoneNumber)
     return new Player(playerId, playerName, playerPhone)
