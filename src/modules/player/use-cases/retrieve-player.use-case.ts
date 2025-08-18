@@ -1,5 +1,6 @@
-import { Player } from '../entities/player'
+import { Player } from "../entities/player";
 
 export interface RetrievePlayerUseCase {
-  getPlayers(): Promise<Player[]>
+  retrievePlayers(): Promise<Player[]>
+  retrievPlayerById(id: string): Promise<Player>
 }
