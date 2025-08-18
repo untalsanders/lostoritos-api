@@ -21,7 +21,7 @@ POST {{baseUrl}}/api/players
 Content-Type: {{contentType}}
 
 {
-  "firstname": "Luis",
-  "lastname": "Maldonado",
-  "phoneNumber": "+541529384756"
+  "firstname": "Alberto",
+  "lastname": "Lugo",
+  "phoneNumber": "+5415293888888"
 }
