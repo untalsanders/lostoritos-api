@@ -1,4 +1,4 @@
-import { ConsoleLogger, Logger } from '@nestjs/common'
+import { ConsoleLogger, Logger, ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 
@@ -19,6 +19,7 @@ async function bootstrap() {
 
   app.setGlobalPrefix(prefix)
   app.enableCors()
+  app.useGlobalPipes(new ValidationPipe())
 
   await app.listen(port, host, () =>
     logger.log(`Server is running on ${apiUrl}`),
