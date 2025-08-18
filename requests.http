@@ -1,0 +1,27 @@
+@host = localhost
+@port = 3000
+@baseUrl = http://{{host}}:{{port}}
+@contentType = application/json
+
+
+### PlayerController [GET /players]
+# Get all players retrieval from data storage
+GET {{baseUrl}}/players
+Content-Type: {{contentType}}
+
+
+### Get a player by id
+# @prompt id
+GET {{baseUrl}}/players/{{id}}
+Content-Type: {{contentType}}
+
+
+### Create player
+POST {{baseUrl}}/players
+Content-Type: {{contentType}}
+
+{
+  "firstname": "Sanders Smith",
+  "lastname": "Gutiérrez Mena",
+  "phoneNumber": "1165690846"
+}
