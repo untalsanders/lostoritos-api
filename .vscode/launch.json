@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "test:cov"],
+      "runtimeExecutable": "pnpm",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run Dev",
+      "request": "launch",
+      "type": "node",
+      "runtimeArgs": ["run-script", "start:dev"],
+      "runtimeExecutable": "pnpm",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
